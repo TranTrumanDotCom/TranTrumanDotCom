@@ -1,0 +1,27 @@
+
+importScripts('https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/9.15.0/firebase-messaging-compat.js');
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAHf743CrTCqqtzfi5zM7rRpa9Hz1M5vwo",
+  authDomain: "trantrumandotcom.firebaseapp.com",
+  projectId: "trantrumandotcom",
+  storageBucket: "trantrumandotcom.appspot.com",
+  messagingSenderId: "863197101087",
+  appId: "1:863197101087:web:0410ee4c8b307e8846a92a",
+  measurementId: "G-VL660MH0BC"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const messaging = firebase.messaging();
+
+messaging.onBackgroundMessage(function(payload) {
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+    icon: '/firebase-logo.png'
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
